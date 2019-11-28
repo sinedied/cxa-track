@@ -1,0 +1,69 @@
+{
+  "name": "cxa-track",
+  "version": "1.0.0",
+  "description": "Convenient CLI to quickly update CxA tracked links",
+  "preferGlobal": true,
+  "repository": "sinedied/cxa-track",
+  "homepage": "https://github.com/sinedied/cxa-track",
+  "bugs": {
+    "url": "https://github.com/sinedied/cxa-track/issues"
+  },
+  "keywords": [
+    "cli",
+    "cxa",
+    "advocate",
+    "microsoft",
+    "links"
+  ],
+  "main": "cli.js",
+  "bin": {
+    "cxa": "./bin/cxa.js"
+  },
+  "scripts": {
+    "lint": "xo",
+    "lint:fix": "xo --fix",
+    "test": "xo && jest --verbose",
+    "test:watch": "jest --watch",
+    "postpublish": "git tag -a $npm_package_version -m \"$npm_package_version\" && git push --tags"
+  },
+  "author": {
+    "name": "Yohan Lasorsa",
+    "url": "https://twitter.com/sinedied"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "chalk": "^3.0.0",
+    "clipboardy": "^2.1.0",
+    "conf": "^6.2.0",
+    "gray-matter": "^4.0.2",
+    "minimist": "^1.2.0"
+  },
+  "devDependencies": {
+    "jest": "^24.9.0",
+    "xo": "^0.25.3"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "xo": {
+    "space": true,
+    "prettier": true,
+    "envs": [
+      "node",
+      "jest"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "*.js",
+      "lib/**/*.js"
+    ],
+    "silent": true
+  },
+  "files": [
+    "index.js",
+    "lib/*.js",
+    "bin/cxa.js",
+    "!*.spec.js"
+  ]
+}
