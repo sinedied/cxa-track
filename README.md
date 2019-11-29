@@ -1,7 +1,7 @@
 # :memo: cxa-track
 
-[![NPM version](https://img.shields.io/npm/v/fcxa-track.svg)](https://www.npmjs.com/package/cxa-track)
-[![Build status](https://img.shields.io/travis/sinedied/cxa-track/master.svg)](https://travis-ci.org/sinedied/cxa-track)
+[![NPM version](https://img.shields.io/npm/v/cxa-track.svg)](https://www.npmjs.com/package/cxa-track)
+[![Build Status](https://github.com/sinedied/cxa-track/workflows/ci/badge.svg)](https://github.com/sinedied/cxa-track/actions)
 ![Node version](https://img.shields.io/node/v/cxa-track.svg)
 [![Install size](https://packagephobia.now.sh/badge?p=cxa-track)](https://packagephobia.now.sh/result?p=cxa-track)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
