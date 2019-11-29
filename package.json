@@ -20,11 +20,13 @@
     "cxa": "./bin/cxa.js"
   },
   "scripts": {
+    "commit": "git-cz",
     "lint": "xo",
     "lint:fix": "xo --fix",
     "test": "xo && jest --verbose",
     "test:watch": "jest --watch",
-    "postpublish": "git tag -a $npm_package_version -m \"$npm_package_version\" && git push --tags"
+    "release": "semantic-release --no-ci",
+    "release:check": "npm run release -s -- --dry-run"
   },
   "author": {
     "name": "Yohan Lasorsa",
@@ -40,7 +42,16 @@
   },
   "devDependencies": {
     "jest": "^24.9.0",
-    "xo": "^0.25.3"
+    "xo": "^0.25.3",
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "@semantic-release/changelog": "^3.0.4",
+    "@semantic-release/git": "^7.0.16",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
+    "husky": "^3.0.5",
+    "lint-staged": "^9.2.5",
+    "semantic-release": "^15.13.24"
   },
   "engines": {
     "node": ">=10.0.0"
@@ -54,17 +65,56 @@
     ]
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>/test/jest.setup.js"],
+    "setupFilesAfterEnv": [
+      "<rootDir>/test/jest.setup.js"
+    ],
     "collectCoverageFrom": [
       "*.js",
       "lib/**/*.js"
     ],
     "silent": true
   },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "*.js": [
+      "xo --fix",
+      "git add"
+    ]
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/changelog",
+      "@semantic-release/npm",
+      [
+        "@semantic-release/git",
+        {
+          "assets": [
+            "package.json",
+            "package-lock.json",
+            "CHANGELOG.md"
+          ],
+          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
+        }
+      ],
+      "@semantic-release/github"
+    ],
+    "branch": "master"
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "lint-staged",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
   "files": [
     "index.js",
     "lib/*.js",
-    "bin/cxa.js",
-    "!*.spec.js"
+    "bin/cxa.js"
   ]
 }
