@@ -25,7 +25,7 @@
     "lint:fix": "xo --fix",
     "test": "xo && jest --verbose",
     "test:watch": "jest --watch",
-    "release": "semantic-release --no-ci",
+    "release": "semantic-release",
     "release:check": "npm run release -s -- --dry-run"
   },
   "author": {
