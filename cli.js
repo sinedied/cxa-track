@@ -35,10 +35,11 @@ Tracking code format (fallback to default for missing values):
 function cli(args) {
   const options = minimist(args, {
     boolean: ['watch', 'version', 'help'],
-    string: ['set'],
+    string: ['set', 'track'],
     alias: {
       w: 'watch',
       s: 'set',
+      t: 'track',
       v: 'version',
       h: 'help'
     }
