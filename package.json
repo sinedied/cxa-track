@@ -1,6 +1,6 @@
 {
   "name": "cxa-track",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Convenient CLI to quickly update CxA tracked links",
   "preferGlobal": true,
   "repository": "sinedied/cxa-track",

@@ -1,3 +1,10 @@
+## [1.0.2](https://github.com/sinedied/cxa-track/compare/v1.0.1...v1.0.2) (2019-12-09)
+
+
+### Bug Fixes
+
+* error with saved config ([8ed6456](https://github.com/sinedied/cxa-track/commit/8ed64568d318a15961820d8e6880c2e18d029494))
+
 ## [1.0.1](https://github.com/sinedied/cxa-track/compare/v1.0.0...v1.0.1) (2019-12-04)
 
 
