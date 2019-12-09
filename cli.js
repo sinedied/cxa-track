@@ -46,6 +46,7 @@ function cli(args) {
   });
 
   const config = new Conf({
+    projectName: pkg.name,
     defaults: {trackingCode: null}
   });
 
