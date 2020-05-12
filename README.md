@@ -14,7 +14,7 @@
 **Features:**
 - Watch mode to automagically catch URLs from clipboard and update them without intervention
 - Batch mode to search & replace tracked URLs directly in text files
-- [Front matter](https://jekyllrb.com/docs/front-matter/) support, using `trackingCode` property if it's defined
+- [Front matter](https://jekyllrb.com/docs/front-matter/) support, using `trackingCode`, `tracking_code` or `tracking-code` property if it's defined
 
 ## Installation
 

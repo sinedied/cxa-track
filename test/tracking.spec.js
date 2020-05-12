@@ -72,11 +72,29 @@ describe('mergeFrontMatterTrackingCode', () => {
     ).toBe('event-channel-alias');
   });
 
-  it('should merge tracking code from front matter property', () => {
+  it('should merge tracking code from front matter property trackingCode', () => {
     expect(
       mergeFrontMatterTrackingCode(
         'event-channel-alias',
         '---\ntrackingCode: party-hard\n---'
+      )
+    ).toBe('party-hard-alias');
+  });
+
+  it('should merge tracking code from front matter property tracking_code', () => {
+    expect(
+      mergeFrontMatterTrackingCode(
+        'event-channel-alias',
+        '---\ntracking_code: party-hard\n---'
+      )
+    ).toBe('party-hard-alias');
+  });
+
+  it('should merge tracking code from front matter property tracking-code', () => {
+    expect(
+      mergeFrontMatterTrackingCode(
+        'event-channel-alias',
+        '---\ntracking-code: party-hard\n---'
       )
     ).toBe('party-hard-alias');
   });
