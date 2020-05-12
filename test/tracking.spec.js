@@ -96,7 +96,7 @@ describe('parseTrackingCode', () => {
   });
 
   it('should throw if there is invalid characters', () => {
-    expect(() => parseTrackingCode('a_e')).toThrow();
+    expect(() => parseTrackingCode('a+e')).toThrow();
   });
 
   it('should parse event', () => {
@@ -116,6 +116,10 @@ describe('parseTrackingCode', () => {
       channel: 'channel',
       alias: 'alias'
     });
+  });
+
+  it('should allow underscore', () => {
+    expect(parseTrackingCode('build_event')).toEqual({event: 'build_event'});
   });
 });
 

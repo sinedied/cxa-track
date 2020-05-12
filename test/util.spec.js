@@ -12,7 +12,7 @@ describe('containsOnlyAlphanumeric', () => {
   });
 
   it('should return fase', () => {
-    expect(containsOnlyAlphanumeric('_sdf')).toBe(false);
+    expect(containsOnlyAlphanumeric('-sdf')).toBe(false);
   });
 });
 
