@@ -9,9 +9,7 @@ describe('updateUrlInline', () => {
       'area-ID-alias'
     );
     const clipboardUrl = clipboardy.readSync();
-    expect(url).toBe(
-      'https://azure.microsoft.com/?WT.mc_id=area-ID-alias'
-    );
+    expect(url).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias');
     expect(clipboardUrl).toBe(url);
   });
 });

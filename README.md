@@ -36,7 +36,7 @@ Options:
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
-  area
+  ID
   area-ID
   area-ID-alias
 ```

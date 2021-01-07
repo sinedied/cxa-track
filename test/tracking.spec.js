@@ -41,18 +41,16 @@ describe('mergeTrackingCode', () => {
   });
 
   it('should return default', () => {
-    expect(mergeTrackingCode('area-ID-alias')).toBe(
-      'area-ID-alias'
-    );
+    expect(mergeTrackingCode('area-ID-alias')).toBe('area-ID-alias');
   });
 
-  it('should override default area', () => {
+  it('should override default ID', () => {
     expect(mergeTrackingCode('area-ID-alias', 'party')).toBe(
-      'party-channel-alias'
+      'area-party-alias'
     );
   });
 
-  it('should override default area and channel', () => {
+  it('should override default area and ID', () => {
     expect(mergeTrackingCode('area-ID-alias', 'party-hard')).toBe(
       'party-hard-alias'
     );
@@ -67,9 +65,9 @@ describe('mergeTrackingCode', () => {
 
 describe('mergeFrontMatterTrackingCode', () => {
   it('should do nothing if no front matter is present', () => {
-    expect(
-      mergeFrontMatterTrackingCode('area-ID-alias', 'hello world')
-    ).toBe('area-ID-alias');
+    expect(mergeFrontMatterTrackingCode('area-ID-alias', 'hello world')).toBe(
+      'area-ID-alias'
+    );
   });
 
   it('should merge tracking code from front matter property trackingCode', () => {
@@ -117,27 +115,27 @@ describe('parseTrackingCode', () => {
     expect(() => parseTrackingCode('a+e')).toThrow();
   });
 
-  it('should parse area', () => {
-    expect(parseTrackingCode('area')).toEqual({area: 'area'});
+  it('should parse ID', () => {
+    expect(parseTrackingCode('ID')).toEqual({id: 'ID'});
   });
 
-  it('should parse area and channel', () => {
+  it('should parse area and ID', () => {
     expect(parseTrackingCode('area-ID')).toEqual({
       area: 'area',
-      channel: 'channel'
+      id: 'ID'
     });
   });
 
-  it('should parse area, channel and alias', () => {
+  it('should parse area, ID and alias', () => {
     expect(parseTrackingCode('area-ID-alias')).toEqual({
       area: 'area',
-      channel: 'channel',
+      id: 'ID',
       alias: 'alias'
     });
   });
 
   it('should allow underscore', () => {
-    expect(parseTrackingCode('build_area')).toEqual({area: 'build_area'});
+    expect(parseTrackingCode('build_area')).toEqual({id: 'build_area'});
   });
 });
 
@@ -154,17 +152,12 @@ describe('updateTrackedUrl', () => {
         'https://azure.microsoft.com/?debug=true',
         'area-ID-alias'
       )
-    ).toBe(
-      'https://azure.microsoft.com/?debug=true&WT.mc_id=area-ID-alias'
-    );
+    ).toBe('https://azure.microsoft.com/?debug=true&WT.mc_id=area-ID-alias');
   });
 
   it('should add tracking params and keep existing hash', () => {
     expect(
-      updateTrackedUrl(
-        'https://azure.microsoft.com/#section',
-        'area-ID-alias'
-      )
+      updateTrackedUrl('https://azure.microsoft.com/#section', 'area-ID-alias')
     ).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias#section');
   });
 
@@ -185,9 +178,7 @@ describe('updateTrackedUrlAndCopy', () => {
       'area-ID-alias'
     );
     const clipboardUrl = clipboardy.readSync();
-    expect(url).toBe(
-      'https://azure.microsoft.com/?WT.mc_id=area-ID-alias'
-    );
+    expect(url).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias');
     expect(clipboardUrl).toBe(url);
   });
 });
@@ -203,8 +194,7 @@ describe('updateTrackingCodeInText', () => {
     files with random URLs (http://google.com) and some with tracked links [here](https://azure.microsoft.com/fr-fr/demo#hash).
     It should leave untouched this one: azure.microsoft.com but replace this one: http://code.visualstudio.com/download.`;
 
-    expect(updateTrackingCodeInText(text, 'area-ID-alias'))
-      .toBe(`# Testing
+    expect(updateTrackingCodeInText(text, 'area-ID-alias')).toBe(`# Testing
     files with random URLs (http://google.com) and some with tracked links [here](https://azure.microsoft.com/demo?WT.mc_id=area-ID-alias#hash).
     It should leave untouched this one: azure.microsoft.com but replace this one: http://code.visualstudio.com/download?WT.mc_id=area-ID-alias.`);
   });
