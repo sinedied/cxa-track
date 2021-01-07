@@ -36,14 +36,14 @@ Options:
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
-  event
-  event-channel
-  event-channel-alias
+  area
+  area-ID
+  area-ID-alias
 ```
 
 ### Default tracking code
 
-You should run `cxa -s event-channel-alias` at least once to save your default tracking code.
+You should run `cxa -s area-ID-alias` at least once to save your default tracking code.
 
 You will then be able to override it partially or fully using the `-t` options when needed.
 
