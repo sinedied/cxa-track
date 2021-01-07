@@ -27,9 +27,9 @@ You can omit the URL argument if you copy one in the clipboard.
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
-  event
-  event-channel
-  event-channel-alias
+  area
+  area-ID
+  area-ID-alias
 `;
 
 function cli(args) {
