@@ -9,7 +9,7 @@
 
 <img src="https://user-images.githubusercontent.com/593151/69799062-d86c4500-11d2-11ea-8af8-bc9e002ec3d6.png" alt="bit matrix" width="200">
 
-> Convenient CLI to quickly update CxA tracked links
+> Convenient CLI to quickly create or update CxA tracked links.
 
 **Features:**
 - Watch mode to automagically catch URLs from clipboard and update them without intervention
