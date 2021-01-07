@@ -25,7 +25,6 @@
     "lint:fix": "xo --fix",
     "test": "xo && jest --verbose",
     "test:watch": "jest --watch",
-    "release": "semantic-release",
     "release:check": "npm run release -s -- --dry-run"
   },
   "author": {
@@ -34,27 +33,26 @@
   },
   "license": "MIT",
   "dependencies": {
-    "chalk": "^3.0.0",
-    "clipboardy": "^2.1.0",
-    "conf": "^6.2.0",
+    "chalk": "^4.1.0",
+    "clipboardy": "^2.3.0",
+    "conf": "^7.1.2",
     "gray-matter": "^4.0.2",
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "jest": "^24.9.0",
-    "xo": "^0.25.3",
-    "@commitlint/cli": "^8.1.0",
-    "@commitlint/config-conventional": "^8.1.0",
-    "@semantic-release/changelog": "^3.0.4",
-    "@semantic-release/git": "^7.0.16",
-    "commitizen": "^4.0.3",
-    "cz-conventional-changelog": "^3.0.2",
-    "husky": "^3.0.5",
-    "lint-staged": "^9.2.5",
-    "semantic-release": "^15.13.24"
+    "@commitlint/cli": "^11.0.0",
+    "@commitlint/config-conventional": "^11.0.0",
+    "commitizen": "^4.2.2",
+    "cz-conventional-changelog": "^3.3.0",
+    "husky": "^4.3.7",
+    "jest": "^26.6.3",
+    "lint-staged": "^10.5.3",
+    "semantic-release": "^17.3.1",
+    "semantic-release-npm-github": "^1.0.2",
+    "xo": "^0.37.1"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=12.0.0"
   },
   "xo": {
     "space": true,
@@ -86,25 +84,8 @@
     ]
   },
   "release": {
-    "plugins": [
-      "@semantic-release/commit-analyzer",
-      "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
-      "@semantic-release/npm",
-      [
-        "@semantic-release/git",
-        {
-          "assets": [
-            "package.json",
-            "package-lock.json",
-            "CHANGELOG.md"
-          ],
-          "message": "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-        }
-      ],
-      "@semantic-release/github"
-    ],
-    "branch": "master"
+    "extends": "semantic-release-npm-github",
+    "branches": "main"
   },
   "husky": {
     "hooks": {

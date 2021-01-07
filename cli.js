@@ -97,7 +97,7 @@ function updateUrlInline(url, trackingCode) {
 async function updateTrackingCodeInFiles(files, trackingCode) {
   let updatedCount = 0;
   await Promise.all(
-    files.map(async file => {
+    files.map(async (file) => {
       try {
         const text = await fs.readFile(file, 'utf-8');
         const textTrackingCode = mergeFrontMatterTrackingCode(

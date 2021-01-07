@@ -2,7 +2,7 @@ jest.mock('clipboardy', () => {
   let clipboard = null;
   return {
     readSync: () => clipboard,
-    writeSync: data => {
+    writeSync: (data) => {
       clipboard = data;
     }
   };
