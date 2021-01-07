@@ -27,7 +27,7 @@ You can omit the URL argument if you copy one in the clipboard.
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
-  area
+  ID
   area-ID
   area-ID-alias
 `;
