@@ -13,10 +13,7 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: 14
-    - run: |
-        npm ci
-        npm run toc
-        git add README.md
+    - run: npm ci
       env:
         CI: true
     - run: npx semantic-release
