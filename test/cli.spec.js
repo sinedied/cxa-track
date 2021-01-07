@@ -6,11 +6,11 @@ describe('updateUrlInline', () => {
     clipboardy.writeSync('');
     const url = updateUrlInline(
       'https://azure.microsoft.com/',
-      'event-channel-alias'
+      'area-ID-alias'
     );
     const clipboardUrl = clipboardy.readSync();
     expect(url).toBe(
-      'https://azure.microsoft.com/?WT.mc_id=event-channel-alias'
+      'https://azure.microsoft.com/?WT.mc_id=area-ID-alias'
     );
     expect(clipboardUrl).toBe(url);
   });

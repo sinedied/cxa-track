@@ -37,29 +37,29 @@ describe('checkTrackedDomain', () => {
 
 describe('mergeTrackingCode', () => {
   it('should throw', () => {
-    expect(() => mergeTrackingCode('event')).toThrow();
+    expect(() => mergeTrackingCode('area')).toThrow();
   });
 
   it('should return default', () => {
-    expect(mergeTrackingCode('event-channel-alias')).toBe(
-      'event-channel-alias'
+    expect(mergeTrackingCode('area-ID-alias')).toBe(
+      'area-ID-alias'
     );
   });
 
-  it('should override default event', () => {
-    expect(mergeTrackingCode('event-channel-alias', 'party')).toBe(
+  it('should override default area', () => {
+    expect(mergeTrackingCode('area-ID-alias', 'party')).toBe(
       'party-channel-alias'
     );
   });
 
-  it('should override default event and channel', () => {
-    expect(mergeTrackingCode('event-channel-alias', 'party-hard')).toBe(
+  it('should override default area and channel', () => {
+    expect(mergeTrackingCode('area-ID-alias', 'party-hard')).toBe(
       'party-hard-alias'
     );
   });
 
   it('should override default tracking code', () => {
-    expect(mergeTrackingCode('event-channel-alias', 'party-hard-bob')).toBe(
+    expect(mergeTrackingCode('area-ID-alias', 'party-hard-bob')).toBe(
       'party-hard-bob'
     );
   });
@@ -68,14 +68,14 @@ describe('mergeTrackingCode', () => {
 describe('mergeFrontMatterTrackingCode', () => {
   it('should do nothing if no front matter is present', () => {
     expect(
-      mergeFrontMatterTrackingCode('event-channel-alias', 'hello world')
-    ).toBe('event-channel-alias');
+      mergeFrontMatterTrackingCode('area-ID-alias', 'hello world')
+    ).toBe('area-ID-alias');
   });
 
   it('should merge tracking code from front matter property trackingCode', () => {
     expect(
       mergeFrontMatterTrackingCode(
-        'event-channel-alias',
+        'area-ID-alias',
         '---\ntrackingCode: party-hard\n---'
       )
     ).toBe('party-hard-alias');
@@ -84,7 +84,7 @@ describe('mergeFrontMatterTrackingCode', () => {
   it('should merge tracking code from front matter property tracking_code', () => {
     expect(
       mergeFrontMatterTrackingCode(
-        'event-channel-alias',
+        'area-ID-alias',
         '---\ntracking_code: party-hard\n---'
       )
     ).toBe('party-hard-alias');
@@ -93,7 +93,7 @@ describe('mergeFrontMatterTrackingCode', () => {
   it('should merge tracking code from front matter property tracking-code', () => {
     expect(
       mergeFrontMatterTrackingCode(
-        'event-channel-alias',
+        'area-ID-alias',
         '---\ntracking-code: party-hard\n---'
       )
     ).toBe('party-hard-alias');
@@ -102,8 +102,8 @@ describe('mergeFrontMatterTrackingCode', () => {
 
 describe('generateTrackingParameters', () => {
   it('should return web trends tracking params', () => {
-    expect(generateTrackingParameters('event-channel-alias')).toBe(
-      'WT.mc_id=event-channel-alias'
+    expect(generateTrackingParameters('area-ID-alias')).toBe(
+      'WT.mc_id=area-ID-alias'
     );
   });
 });
@@ -117,45 +117,45 @@ describe('parseTrackingCode', () => {
     expect(() => parseTrackingCode('a+e')).toThrow();
   });
 
-  it('should parse event', () => {
-    expect(parseTrackingCode('event')).toEqual({event: 'event'});
+  it('should parse area', () => {
+    expect(parseTrackingCode('area')).toEqual({area: 'area'});
   });
 
-  it('should parse event and channel', () => {
-    expect(parseTrackingCode('event-channel')).toEqual({
-      event: 'event',
+  it('should parse area and channel', () => {
+    expect(parseTrackingCode('area-ID')).toEqual({
+      area: 'area',
       channel: 'channel'
     });
   });
 
-  it('should parse event, channel and alias', () => {
-    expect(parseTrackingCode('event-channel-alias')).toEqual({
-      event: 'event',
+  it('should parse area, channel and alias', () => {
+    expect(parseTrackingCode('area-ID-alias')).toEqual({
+      area: 'area',
       channel: 'channel',
       alias: 'alias'
     });
   });
 
   it('should allow underscore', () => {
-    expect(parseTrackingCode('build_event')).toEqual({event: 'build_event'});
+    expect(parseTrackingCode('build_area')).toEqual({area: 'build_area'});
   });
 });
 
 describe('updateTrackedUrl', () => {
   it('should add tracking params', () => {
     expect(
-      updateTrackedUrl('https://azure.microsoft.com/', 'event-channel-alias')
-    ).toBe('https://azure.microsoft.com/?WT.mc_id=event-channel-alias');
+      updateTrackedUrl('https://azure.microsoft.com/', 'area-ID-alias')
+    ).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias');
   });
 
   it('should add tracking params and keep existing params', () => {
     expect(
       updateTrackedUrl(
         'https://azure.microsoft.com/?debug=true',
-        'event-channel-alias'
+        'area-ID-alias'
       )
     ).toBe(
-      'https://azure.microsoft.com/?debug=true&WT.mc_id=event-channel-alias'
+      'https://azure.microsoft.com/?debug=true&WT.mc_id=area-ID-alias'
     );
   });
 
@@ -163,18 +163,18 @@ describe('updateTrackedUrl', () => {
     expect(
       updateTrackedUrl(
         'https://azure.microsoft.com/#section',
-        'event-channel-alias'
+        'area-ID-alias'
       )
-    ).toBe('https://azure.microsoft.com/?WT.mc_id=event-channel-alias#section');
+    ).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias#section');
   });
 
   it('should update tracking params', () => {
     expect(
       updateTrackedUrl(
         'https://azure.microsoft.com/?WT.mc_id=party-hard-bob',
-        'event-channel-alias'
+        'area-ID-alias'
       )
-    ).toBe('https://azure.microsoft.com/?WT.mc_id=event-channel-alias');
+    ).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias');
   });
 });
 
@@ -182,11 +182,11 @@ describe('updateTrackedUrlAndCopy', () => {
   it('should add tracking params and copy to clipboard', () => {
     const url = updateTrackedUrlAndCopy(
       'https://azure.microsoft.com/',
-      'event-channel-alias'
+      'area-ID-alias'
     );
     const clipboardUrl = clipboardy.readSync();
     expect(url).toBe(
-      'https://azure.microsoft.com/?WT.mc_id=event-channel-alias'
+      'https://azure.microsoft.com/?WT.mc_id=area-ID-alias'
     );
     expect(clipboardUrl).toBe(url);
   });
@@ -203,9 +203,9 @@ describe('updateTrackingCodeInText', () => {
     files with random URLs (http://google.com) and some with tracked links [here](https://azure.microsoft.com/fr-fr/demo#hash).
     It should leave untouched this one: azure.microsoft.com but replace this one: http://code.visualstudio.com/download.`;
 
-    expect(updateTrackingCodeInText(text, 'event-channel-alias'))
+    expect(updateTrackingCodeInText(text, 'area-ID-alias'))
       .toBe(`# Testing
-    files with random URLs (http://google.com) and some with tracked links [here](https://azure.microsoft.com/demo?WT.mc_id=event-channel-alias#hash).
-    It should leave untouched this one: azure.microsoft.com but replace this one: http://code.visualstudio.com/download?WT.mc_id=event-channel-alias.`);
+    files with random URLs (http://google.com) and some with tracked links [here](https://azure.microsoft.com/demo?WT.mc_id=area-ID-alias#hash).
+    It should leave untouched this one: azure.microsoft.com but replace this one: http://code.visualstudio.com/download?WT.mc_id=area-ID-alias.`);
   });
 });
