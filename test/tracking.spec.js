@@ -4,7 +4,7 @@ const {
   checkTrackedDomain,
   mergeTrackingCode,
   mergeFrontMatterTrackingCode,
-  generateTrackingParams,
+  generateTrackingParameters,
   parseTrackingCode,
   updateTrackedUrl,
   updateTrackedUrlAndCopy,
@@ -100,9 +100,9 @@ describe('mergeFrontMatterTrackingCode', () => {
   });
 });
 
-describe('generateTrackingParams', () => {
+describe('generateTrackingParameters', () => {
   it('should return web trends tracking params', () => {
-    expect(generateTrackingParams('event-channel-alias')).toBe(
+    expect(generateTrackingParameters('event-channel-alias')).toBe(
       'WT.mc_id=event-channel-alias'
     );
   });
