@@ -51,7 +51,7 @@ You will then be able to override it partially or fully using the `-t` options w
 
 When using `cxa -w` the app will be left open and monitor your clipboard: each time tracked URLs are detected, they will be updated directly in the clipboard so you can just paste them.
 
-> Note that it not only works with a single URL, but also any text containing multiple URLs 😎
+> Note that it work with both single URLs and any text containing multiple URLs 😎.
 
 ### Batch mode
 
