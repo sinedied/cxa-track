@@ -37,7 +37,8 @@
     "clipboardy": "^2.3.0",
     "conf": "^7.1.2",
     "gray-matter": "^4.0.2",
-    "minimist": "^1.2.5"
+    "minimist": "^1.2.5",
+    "update-notifier": "^5.0.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",

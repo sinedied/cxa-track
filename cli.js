@@ -4,6 +4,7 @@ const minimist = require('minimist');
 const chalk = require('chalk');
 const Conf = require('conf');
 const clipboardy = require('clipboardy');
+const updateNotifier = require('update-notifier');
 const {isUrl, safeRun} = require('./lib/util');
 const {
   checkTrackedDomain,
@@ -33,6 +34,8 @@ Tracking code format (fallback to default for missing values):
 `;
 
 function cli(args) {
+  updateNotifier({pkg}).notify();
+
   const options = minimist(args, {
     boolean: ['watch', 'version', 'help'],
     string: ['set', 'track'],
