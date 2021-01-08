@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/sinedied/cxa-track/compare/1.1.1...1.2.0) (2021-01-08)
+
+
+### Features
+
+* add update notifier ([5a14771](https://github.com/sinedied/cxa-track/commit/5a147713af40d6843c3e7da77bf9dd4d3d698f89))
+
 ## [1.1.1](https://github.com/sinedied/cxa-track/compare/1.1.0...1.1.1) (2021-01-08)
 
 # [1.1.0](https://github.com/sinedied/cxa-track/compare/v1.0.2...1.1.0) (2021-01-07)
