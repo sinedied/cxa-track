@@ -1,3 +1,5 @@
+## [1.1.1](https://github.com/sinedied/cxa-track/compare/1.1.0...1.1.1) (2021-01-08)
+
 # [1.1.0](https://github.com/sinedied/cxa-track/compare/v1.0.2...1.1.0) (2021-01-07)
 
 
