@@ -158,7 +158,7 @@ function watchClipboard(config, partialTrackingCode) {
     config.get('trackingCode'),
     partialTrackingCode
   );
-  const previous = '';
+  let previous = '';
 
   setInterval(() => {
     let clipboard = clipboardy.readSync();
@@ -168,9 +168,14 @@ function watchClipboard(config, partialTrackingCode) {
         trackingCode,
         clipboard
       );
-      clipboard = updateTrackingCodeInText(clipboard, clipboardTrackingCode);
-      clipboardy.writeSync(clipboard);
-      console.log(`updated with code ${clipboardTrackingCode}`);
+      const newClipboard = updateTrackingCodeInText(clipboard, clipboardTrackingCode);
+
+      if (newClipboard !== clipboard) {
+        clipboard = newClipboard;
+        clipboardy.writeSync(clipboard);
+        console.log(`Updated with code ${clipboardTrackingCode}`);
+      }
+      previous = clipboard;
     }
   }, clipboardRefreshIntervalMs);
 
