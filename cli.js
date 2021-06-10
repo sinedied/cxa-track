@@ -168,13 +168,17 @@ function watchClipboard(config, partialTrackingCode) {
         trackingCode,
         clipboard
       );
-      const newClipboard = updateTrackingCodeInText(clipboard, clipboardTrackingCode);
+      const newClipboard = updateTrackingCodeInText(
+        clipboard,
+        clipboardTrackingCode
+      );
 
       if (newClipboard !== clipboard) {
         clipboard = newClipboard;
         clipboardy.writeSync(clipboard);
         console.log(`Updated with code ${clipboardTrackingCode}`);
       }
+
       previous = clipboard;
     }
   }, clipboardRefreshIntervalMs);
