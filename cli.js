@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const Conf = require('conf');
 const clipboardy = require('clipboardy');
 const updateNotifier = require('update-notifier');
-const {isUrl, safeRun} = require('./lib/util');
+const {isUrl, safeRun, checkLocale} = require('./lib/util');
 const {
   checkTrackedDomain,
   mergeTrackingCode,
@@ -25,24 +25,30 @@ You can omit the URL argument if you copy one in the clipboard.
   -s, --set <tracking-code>    Set default tracking code
   -t, --track <tracking-code>  Use specified tracking code
   -w, --watch                  Watch clipboard for URLs
+  -k, --keep-locale            Keep locale code in URLs
+  -l, --locale <locale>        Force locale code in URLs
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
   ID
   area-ID
   area-ID-alias
+
+Locale format: <language>-<country>, example: en-us
 `;
 
 function cli(args) {
   updateNotifier({pkg}).notify();
 
   const options = minimist(args, {
-    boolean: ['watch', 'version', 'help'],
-    string: ['set', 'track'],
+    boolean: ['watch', 'version', 'help', 'keep-locale'],
+    string: ['set', 'track', 'locale'],
     alias: {
       w: 'watch',
       s: 'set',
       t: 'track',
+      k: 'keep-locale',
+      l: 'locale',
       v: 'version',
       h: 'help'
     }
@@ -69,11 +75,19 @@ function cli(args) {
       );
     }
 
+    const locale = options.locale || options['keep-locale'];
+    const updateOptions = {
+      partialTrackingCode: options.track,
+      locale
+    };
+
+    if (locale && typeof locale === 'string') checkLocale(locale);
+
     if (options.watch) {
-      return watchClipboard(config, options.track);
+      return watchClipboard(config, updateOptions);
     }
 
-    updateTrackingCode(config, options._, options.track);
+    updateTrackingCode(config, options._, updateOptions);
   });
 }
 
@@ -88,16 +102,16 @@ function setDefaultTrackingCode(config, partialTrackingCode) {
   return trackingCode;
 }
 
-function updateUrlInline(url, trackingCode) {
+function updateUrlInline(url, trackingCode, locale) {
   return safeRun(() => {
     checkTrackedDomain(url);
-    const newUrl = updateTrackedUrlAndCopy(url, trackingCode);
+    const newUrl = updateTrackedUrlAndCopy(url, trackingCode, locale);
     console.log(chalk`{green URL copied to clipboard!}\n${newUrl}`);
     return newUrl;
   });
 }
 
-async function updateTrackingCodeInFiles(files, trackingCode) {
+async function updateTrackingCodeInFiles(files, trackingCode, locale) {
   let updatedCount = 0;
   await Promise.all(
     files.map(async (file) => {
@@ -107,7 +121,11 @@ async function updateTrackingCodeInFiles(files, trackingCode) {
           trackingCode,
           text
         );
-        const newText = updateTrackingCodeInText(text, textTrackingCode);
+        const newText = updateTrackingCodeInText(
+          text,
+          textTrackingCode,
+          locale
+        );
 
         if (newText !== text) {
           await fs.writeFile(file, newText);
@@ -125,7 +143,8 @@ async function updateTrackingCodeInFiles(files, trackingCode) {
   console.log(chalk`${updatedCount} file(s) updated`);
 }
 
-function updateTrackingCode(config, filesOrUrl, partialTrackingCode) {
+function updateTrackingCode(config, filesOrUrl, options) {
+  const {partialTrackingCode, locale} = options;
   const trackingCode = mergeTrackingCode(
     config.get('trackingCode'),
     partialTrackingCode
@@ -137,7 +156,7 @@ function updateTrackingCode(config, filesOrUrl, partialTrackingCode) {
 
     if (!isUrl(clipboardText)) {
       console.log(chalk`{yellow No URL found in clipboard}\n\n${help}`);
-    } else if (!updateUrlInline(clipboardText, trackingCode)) {
+    } else if (!updateUrlInline(clipboardText, trackingCode, locale)) {
       console.log(`\n${help}`);
     }
 
@@ -146,14 +165,15 @@ function updateTrackingCode(config, filesOrUrl, partialTrackingCode) {
 
   // Update single URL
   if (filesOrUrl.length === 1 && isUrl(filesOrUrl)) {
-    return updateUrlInline(filesOrUrl[0], trackingCode);
+    return updateUrlInline(filesOrUrl[0], trackingCode, locale);
   }
 
   // Update in files
-  return updateTrackingCodeInFiles(filesOrUrl, trackingCode);
+  return updateTrackingCodeInFiles(filesOrUrl, trackingCode, locale);
 }
 
-function watchClipboard(config, partialTrackingCode) {
+function watchClipboard(config, options) {
+  const {partialTrackingCode, locale} = options;
   const trackingCode = mergeTrackingCode(
     config.get('trackingCode'),
     partialTrackingCode
@@ -170,7 +190,8 @@ function watchClipboard(config, partialTrackingCode) {
       );
       const newClipboard = updateTrackingCodeInText(
         clipboard,
-        clipboardTrackingCode
+        clipboardTrackingCode,
+        locale
       );
 
       if (newClipboard !== clipboard) {

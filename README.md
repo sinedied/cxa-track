@@ -33,12 +33,16 @@ Options:
   -s, --set <tracking-code>    Set default tracking code
   -t, --track <tracking-code>  Use specified tracking code
   -w, --watch                  Watch clipboard for URLs
+  -k, --keep-locale            Keep locale code in URLs
+  -l, --locale <locale-code>   Force locale code in URLs
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
   ID
   area-ID
   area-ID-alias
+
+Locale format: <language>-<country>, example: en-us
 ```
 
 ### Default tracking code

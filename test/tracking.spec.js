@@ -169,6 +169,45 @@ describe('updateTrackedUrl', () => {
       )
     ).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias');
   });
+
+  it('should remove locale part from URL', () => {
+    expect(
+      updateTrackedUrl(
+        'https://azure.microsoft.com/fr-fr/docs/',
+        'area-ID-alias'
+      )
+    ).toBe('https://azure.microsoft.com/docs/?WT.mc_id=area-ID-alias');
+  });
+
+  it('should keep locale part in URL', () => {
+    expect(
+      updateTrackedUrl(
+        'https://azure.microsoft.com/fr-fr/docs/',
+        'area-ID-alias',
+        true
+      )
+    ).toBe('https://azure.microsoft.com/fr-fr/docs/?WT.mc_id=area-ID-alias');
+  });
+
+  it('should replace locale part in URL', () => {
+    expect(
+      updateTrackedUrl(
+        'https://azure.microsoft.com/fr-fr/docs/',
+        'area-ID-alias',
+        'de-de'
+      )
+    ).toBe('https://azure.microsoft.com/de-de/docs/?WT.mc_id=area-ID-alias');
+  });
+
+  it('should add locale part in URL', () => {
+    expect(
+      updateTrackedUrl(
+        'https://azure.microsoft.com/docs/',
+        'area-ID-alias',
+        'fr-fr'
+      )
+    ).toBe('https://azure.microsoft.com/fr-fr/docs/?WT.mc_id=area-ID-alias');
+  });
 });
 
 describe('updateTrackedUrlAndCopy', () => {
