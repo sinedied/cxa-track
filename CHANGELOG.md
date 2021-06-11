@@ -1,3 +1,16 @@
+# [1.3.0](https://github.com/sinedied/cxa-track/compare/1.2.0...1.3.0) (2021-06-11)
+
+
+### Bug Fixes
+
+* clipboard update loop ([c29e40a](https://github.com/sinedied/cxa-track/commit/c29e40a917fb15fcd263287324e001a348c9801f))
+* remove aka.ms from default domains ([ee12e04](https://github.com/sinedied/cxa-track/commit/ee12e041dbde5206111a3f0f1f007a140bd51b9d))
+
+
+### Features
+
+* add options to keep or replace locale ([c9d1193](https://github.com/sinedied/cxa-track/commit/c9d1193669bf5f2d48ed3ff95225f70e0d1ff084))
+
 # [1.2.0](https://github.com/sinedied/cxa-track/compare/1.1.1...1.2.0) (2021-01-08)
 
 
