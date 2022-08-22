@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/sinedied/cxa-track/compare/2.0.1...2.1.0) (2022-08-22)
+
+
+### Features
+
+* allow usage as a library ([4840f71](https://github.com/sinedied/cxa-track/commit/4840f713d5e441bb3383e7fd1799f466995efbee))
+
 ## [2.0.1](https://github.com/sinedied/cxa-track/compare/2.0.0...2.0.1) (2022-08-22)
 
 
