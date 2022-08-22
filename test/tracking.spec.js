@@ -1,5 +1,5 @@
-const clipboardy = require('clipboardy');
-const {
+import clipboardy from 'clipboardy';
+import {
   isTrackedDomain,
   checkTrackedDomain,
   mergeTrackingCode,
@@ -9,7 +9,7 @@ const {
   updateTrackedUrl,
   updateTrackedUrlAndCopy,
   updateTrackingCodeInText
-} = require('../lib/tracking');
+} from '../lib/tracking.js';
 
 describe('isTrackedDomain', () => {
   it('should return true', () => {
@@ -106,14 +106,14 @@ describe('generateTrackingParameters', () => {
   });
 
   it('should return web trends tracking params merged with existing params', () => {
-    expect(generateTrackingParameters('area-ID-alias', {data: 'test'})).toBe(
+    expect(generateTrackingParameters('area-ID-alias', { data: 'test' })).toBe(
       'data=test&WT.mc_id=area-ID-alias'
     );
   });
 
   it('should return updated web trends tracking params', () => {
     expect(
-      generateTrackingParameters('area-ID-alias', {'WT.mc_id': 'hello'})
+      generateTrackingParameters('area-ID-alias', { 'WT.mc_id': 'hello' })
     ).toBe('WT.mc_id=area-ID-alias');
   });
 });
@@ -128,7 +128,7 @@ describe('parseTrackingCode', () => {
   });
 
   it('should parse ID', () => {
-    expect(parseTrackingCode('ID')).toEqual({id: 'ID'});
+    expect(parseTrackingCode('ID')).toEqual({ id: 'ID' });
   });
 
   it('should parse area and ID', () => {
@@ -147,7 +147,7 @@ describe('parseTrackingCode', () => {
   });
 
   it('should allow underscore', () => {
-    expect(parseTrackingCode('build_area')).toEqual({id: 'build_area'});
+    expect(parseTrackingCode('build_area')).toEqual({ id: 'build_area' });
   });
 });
 
@@ -227,7 +227,7 @@ describe('updateTrackedUrl', () => {
         'https://azure.microsoft.com/?debug=true',
         'area-ID-alias',
         true,
-        {extra: 'test'}
+        { extra: 'test' }
       )
     ).toBe(
       'https://azure.microsoft.com/?debug=true&extra=test&WT.mc_id=area-ID-alias'

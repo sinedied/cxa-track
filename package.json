@@ -2,8 +2,28 @@
   "name": "cxa-track",
   "version": "1.3.0",
   "description": "Convenient CLI to quickly update CxA tracked links",
-  "preferGlobal": true,
-  "repository": "sinedied/cxa-track",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sinedied/cxa-track"
+  },
+  "exports": "./lib/index.js",
+  "bin": {
+    "cxa": "./bin/cxa.js"
+  },
+  "scripts": {
+    "lint": "xo",
+    "lint:fix": "xo --fix",
+    "test": "xo && npm run -s test:unit",
+    "test:unit": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --verbose",
+    "test:watch": "npm run -s test:unit -- --watch",
+    "release:check": "semantic-release --dry-run",
+    "prepare": "husky install"
+  },
+  "author": {
+    "name": "Yohan Lasorsa",
+    "url": "https://twitter.com/sinedied"
+  },
   "homepage": "https://github.com/sinedied/cxa-track",
   "bugs": {
     "url": "https://github.com/sinedied/cxa-track/issues"
@@ -15,40 +35,30 @@
     "microsoft",
     "links"
   ],
-  "main": "cli.js",
-  "bin": {
-    "cxa": "./bin/cxa.js"
-  },
-  "scripts": {
-    "lint": "xo",
-    "lint:fix": "xo --fix",
-    "test": "xo && jest --verbose",
-    "test:watch": "jest --watch",
-    "release:check": "semantic-release --dry-run"
-  },
-  "author": {
-    "name": "Yohan Lasorsa",
-    "url": "https://twitter.com/sinedied"
-  },
   "license": "MIT",
   "dependencies": {
-    "chalk": "^4.1.0",
-    "clipboardy": "^2.3.0",
-    "conf": "^7.1.2",
+    "chalk": "^5.0.1",
+    "clipboardy": "^3.0.0",
+    "conf": "^10.2.0",
     "gray-matter": "^4.0.2",
     "minimist": "^1.2.5",
-    "update-notifier": "^5.0.1"
+    "update-notifier": "^6.0.2"
   },
   "devDependencies": {
-    "husky": "^4.3.7",
-    "jest": "^26.6.3",
-    "lint-staged": "^10.5.3",
+    "cross-env": "^7.0.3",
+    "husky": "^8.0.1",
+    "jest": "^28.1.3",
+    "lint-staged": "^13.0.3",
     "semantic-release": "^19.0.3",
     "semantic-release-npm-github": "^3.0.0",
-    "xo": "^0.37.1"
+    "xo": "^0.51.0"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=14.0.0"
+  },
+  "prettier": {
+    "trailingComma": "none",
+    "bracketSpacing": true
   },
   "xo": {
     "space": true,
@@ -58,8 +68,8 @@
       "jest"
     ],
     "rules": {
-      "import/extensions": "off",
-      "unicorn/prevent-abbreviations": "off"
+      "unicorn/prevent-abbreviations": "off",
+      "unicorn/prefer-node-protocol": "off"
     }
   },
   "jest": {
@@ -70,6 +80,7 @@
       "*.js",
       "lib/**/*.js"
     ],
+    "resolver": "<rootDir>/test/jest.resolver.cjs",
     "silent": true
   },
   "lint-staged": {
@@ -81,11 +92,6 @@
   "release": {
     "extends": "semantic-release-npm-github",
     "branches": "main"
-  },
-  "husky": {
-    "hooks": {
-      "precommit": "lint-staged"
-    }
   },
   "files": [
     "index.js",
