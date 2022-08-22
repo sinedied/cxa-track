@@ -1,5 +1,5 @@
-const clipboardy = require('clipboardy');
-const {updateUrlInline} = require('../cli');
+import clipboardy from 'clipboardy';
+import { updateUrlInline } from '../lib/cli.js';
 
 describe('updateUrlInline', () => {
   it('should add tracking code to URL and copy it to clipboard', () => {

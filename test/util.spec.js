@@ -1,11 +1,11 @@
-const {
+import {
   containsOnlyAlphanumeric,
   isUrl,
   removeLocaleFromUrl,
   addLocaleToUrl,
   checkLocale,
   safeRun
-} = require('../lib/util');
+} from '../lib/util.js';
 
 describe('containsOnlyAlphanumeric', () => {
   it('should return true', () => {
