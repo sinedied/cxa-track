@@ -206,24 +206,28 @@ function watchClipboard(config, options) {
     let clipboard = clipboardy.readSync();
 
     if (clipboard !== previous) {
-      const clipboardTrackingCode = mergeFrontMatterTrackingCode(
-        trackingCode,
-        clipboard
-      );
-      const newClipboard = updateTrackingCodeInText(
-        clipboard,
-        clipboardTrackingCode,
-        locale,
-        extraParams
-      );
+      try {
+        const clipboardTrackingCode = mergeFrontMatterTrackingCode(
+          trackingCode,
+          clipboard
+        );
+        const newClipboard = updateTrackingCodeInText(
+          clipboard,
+          clipboardTrackingCode,
+          locale,
+          extraParams
+        );
 
-      if (newClipboard !== clipboard) {
-        clipboard = newClipboard;
-        clipboardy.writeSync(clipboard);
-        console.log(`Updated with code ${clipboardTrackingCode}`);
+        if (newClipboard !== clipboard) {
+          clipboard = newClipboard;
+          clipboardy.writeSync(clipboard);
+          console.log(`Updated with code ${clipboardTrackingCode}`);
+        }
+
+        previous = clipboard;
+      } catch (error) {
+        console.error(chalk`{yellow Error: ${error.message}}`);
       }
-
-      previous = clipboard;
     }
   }, clipboardRefreshIntervalMs);
 
