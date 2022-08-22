@@ -24,7 +24,7 @@ npm install -g cxa-track
 
 ## CLI Usage
 
-```sh
+```
 Usage: cxa [options] [<files|URL>]
 
 You can omit the URL argument if you copy one to the clipboard.
