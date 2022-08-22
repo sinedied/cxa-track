@@ -56,7 +56,11 @@
     "envs": [
       "node",
       "jest"
-    ]
+    ],
+    "rules": {
+      "import/extensions": "off",
+      "unicorn/prevent-abbreviations": "off"
+    }
   },
   "jest": {
     "setupFilesAfterEnv": [
