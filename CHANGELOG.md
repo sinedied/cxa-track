@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/sinedied/cxa-track/compare/2.0.0...2.0.1) (2022-08-22)
+
+
+### Bug Fixes
+
+* missing lib/index.js ([9ccbb2a](https://github.com/sinedied/cxa-track/commit/9ccbb2a59f59e82be63297873f0aed1663600c00))
+
 # [2.0.0](https://github.com/sinedied/cxa-track/compare/1.3.0...2.0.0) (2022-08-22)
 
 
