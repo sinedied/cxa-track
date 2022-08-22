@@ -1,3 +1,23 @@
+# [2.0.0](https://github.com/sinedied/cxa-track/compare/1.3.0...2.0.0) (2022-08-22)
+
+
+### Bug Fixes
+
+* avoid crashing on invalid front matter in watch mode ([3d38dd6](https://github.com/sinedied/cxa-track/commit/3d38dd6fb13d561952879bd6173802f653c810ad))
+* devblogs as tracked domain ([626aeba](https://github.com/sinedied/cxa-track/commit/626aeba2cc61cec9db705858ce2fbfb61c9145a0))
+
+
+### Features
+
+* add --extra option ([2506cfd](https://github.com/sinedied/cxa-track/commit/2506cfd4003bad3f35d7c3f3b4b73f23f0f40891))
+* update packages and migrate to ESM ([21c64ba](https://github.com/sinedied/cxa-track/commit/21c64ba9fc7a388d2720a0f45aac714275775c05))
+
+
+### BREAKING CHANGES
+
+* - Package is now ESM-only
+- Requires Node 14+
+
 # [1.3.0](https://github.com/sinedied/cxa-track/compare/1.2.0...1.3.0) (2021-06-11)
 
 
