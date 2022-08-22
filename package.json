@@ -7,7 +7,14 @@
     "type": "git",
     "url": "https://github.com/sinedied/cxa-track"
   },
-  "exports": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./clipboard": "./lib/clipboard.js",
+    "./frontmatter": "./lib/frontmatter.js",
+    "./run": "./lib/run.js",
+    "./tracking": "./lib/tracking.js",
+    "./utils": "./lib/utils.js"
+  },
   "bin": {
     "cxa": "./bin/cxa.js"
   },

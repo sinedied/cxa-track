@@ -3,8 +3,7 @@ import {
   isUrl,
   removeLocaleFromUrl,
   addLocaleToUrl,
-  checkLocale,
-  safeRun
+  isLocale
 } from '../lib/util.js';
 
 describe('containsOnlyAlphanumeric', () => {
@@ -55,22 +54,12 @@ describe('addLocaleToUrl', () => {
   });
 });
 
-describe('checkLocale', () => {
-  it('should not throw', () => {
-    expect(() => checkLocale('fr-fr')).not.toThrow();
+describe('isLocale', () => {
+  it('should return true', () => {
+    expect(isLocale('fr-fr')).toBe(true);
   });
 
-  it('should throw', () => {
-    expect(() => checkLocale('fr')).toThrow();
-  });
-});
-
-describe('safeRun', () => {
-  it('should swallow exception', () => {
-    expect(() =>
-      safeRun(() => {
-        throw new Error('oups');
-      })
-    ).not.toThrow();
+  it('should return false', () => {
+    expect(isLocale('fr')).toBe(false);
   });
 });

@@ -1,13 +1,10 @@
-import clipboardy from 'clipboardy';
 import {
   isTrackedDomain,
   checkTrackedDomain,
   mergeTrackingCode,
-  mergeFrontMatterTrackingCode,
   generateTrackingParameters,
   parseTrackingCode,
   updateTrackedUrl,
-  updateTrackedUrlAndCopy,
   updateTrackingCodeInText
 } from '../lib/tracking.js';
 
@@ -60,41 +57,6 @@ describe('mergeTrackingCode', () => {
     expect(mergeTrackingCode('area-ID-alias', 'party-hard-bob')).toBe(
       'party-hard-bob'
     );
-  });
-});
-
-describe('mergeFrontMatterTrackingCode', () => {
-  it('should do nothing if no front matter is present', () => {
-    expect(mergeFrontMatterTrackingCode('area-ID-alias', 'hello world')).toBe(
-      'area-ID-alias'
-    );
-  });
-
-  it('should merge tracking code from front matter property trackingCode', () => {
-    expect(
-      mergeFrontMatterTrackingCode(
-        'area-ID-alias',
-        '---\ntrackingCode: party-hard\n---'
-      )
-    ).toBe('party-hard-alias');
-  });
-
-  it('should merge tracking code from front matter property tracking_code', () => {
-    expect(
-      mergeFrontMatterTrackingCode(
-        'area-ID-alias',
-        '---\ntracking_code: party-hard\n---'
-      )
-    ).toBe('party-hard-alias');
-  });
-
-  it('should merge tracking code from front matter property tracking-code', () => {
-    expect(
-      mergeFrontMatterTrackingCode(
-        'area-ID-alias',
-        '---\ntracking-code: party-hard\n---'
-      )
-    ).toBe('party-hard-alias');
   });
 });
 
@@ -232,18 +194,6 @@ describe('updateTrackedUrl', () => {
     ).toBe(
       'https://azure.microsoft.com/?debug=true&extra=test&WT.mc_id=area-ID-alias'
     );
-  });
-});
-
-describe('updateTrackedUrlAndCopy', () => {
-  it('should add tracking params and copy to clipboard', () => {
-    const url = updateTrackedUrlAndCopy(
-      'https://azure.microsoft.com/',
-      'area-ID-alias'
-    );
-    const clipboardUrl = clipboardy.readSync();
-    expect(url).toBe('https://azure.microsoft.com/?WT.mc_id=area-ID-alias');
-    expect(clipboardUrl).toBe(url);
   });
 });
 
