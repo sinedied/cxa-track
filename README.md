@@ -35,6 +35,7 @@ Options:
   -w, --watch                  Watch clipboard for URLs
   -k, --keep-locale            Keep locale code in URLs
   -l, --locale <locale-code>   Force locale code in URLs
+  -e, --extra                  Extra query params to update
   -h, --help                   Show this help
 
 Tracking code format (fallback to default for missing values):
@@ -43,6 +44,7 @@ Tracking code format (fallback to default for missing values):
   area-ID-alias
 
 Locale format: <language>-<country>, example: en-us
+Extra format: <param1>=<value1>&<param2>=<value2>, example: foo=bar&baz=qux
 ```
 
 ### Default tracking code

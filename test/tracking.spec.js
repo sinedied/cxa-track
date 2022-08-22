@@ -104,6 +104,18 @@ describe('generateTrackingParameters', () => {
       'WT.mc_id=area-ID-alias'
     );
   });
+
+  it('should return web trends tracking params merged with existing params', () => {
+    expect(generateTrackingParameters('area-ID-alias', {data: 'test'})).toBe(
+      'data=test&WT.mc_id=area-ID-alias'
+    );
+  });
+
+  it('should return updated web trends tracking params', () => {
+    expect(
+      generateTrackingParameters('area-ID-alias', {'WT.mc_id': 'hello'})
+    ).toBe('WT.mc_id=area-ID-alias');
+  });
 });
 
 describe('parseTrackingCode', () => {
@@ -207,6 +219,19 @@ describe('updateTrackedUrl', () => {
         'fr-fr'
       )
     ).toBe('https://azure.microsoft.com/fr-fr/docs/?WT.mc_id=area-ID-alias');
+  });
+
+  it('should add tracking params and extra params', () => {
+    expect(
+      updateTrackedUrl(
+        'https://azure.microsoft.com/?debug=true',
+        'area-ID-alias',
+        true,
+        {extra: 'test'}
+      )
+    ).toBe(
+      'https://azure.microsoft.com/?debug=true&extra=test&WT.mc_id=area-ID-alias'
+    );
   });
 });
 

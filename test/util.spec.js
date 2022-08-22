@@ -4,7 +4,6 @@ const {
   removeLocaleFromUrl,
   addLocaleToUrl,
   checkLocale,
-  splitHashFromUrl,
   safeRun
 } = require('../lib/util');
 
@@ -63,22 +62,6 @@ describe('checkLocale', () => {
 
   it('should throw', () => {
     expect(() => checkLocale('fr')).toThrow();
-  });
-});
-
-describe('splitHashFromUrl', () => {
-  it('should work without hash', () => {
-    expect(splitHashFromUrl('https://hello.com')).toStrictEqual([
-      'https://hello.com',
-      ''
-    ]);
-  });
-
-  it('should split base URL and hash', () => {
-    expect(splitHashFromUrl('https://hello.com#hash')).toStrictEqual([
-      'https://hello.com',
-      '#hash'
-    ]);
   });
 });
 
