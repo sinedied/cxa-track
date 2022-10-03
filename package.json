@@ -1,6 +1,6 @@
 {
   "name": "cxa-track",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "Convenient CLI to quickly update CxA tracked links",
   "type": "module",
   "repository": {

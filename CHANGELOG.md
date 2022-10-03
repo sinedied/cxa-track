@@ -1,3 +1,10 @@
+# [2.2.0](https://github.com/sinedied/cxa-track/compare/2.1.0...2.2.0) (2022-10-03)
+
+
+### Features
+
+* update tracked domains ([f0ab5fc](https://github.com/sinedied/cxa-track/commit/f0ab5fc6bad16450ccad5dab965587b9abb29c50))
+
 # [2.1.0](https://github.com/sinedied/cxa-track/compare/2.0.1...2.1.0) (2022-08-22)
 
 
