@@ -46,7 +46,7 @@
   "dependencies": {
     "chalk": "^5.0.1",
     "clipboardy": "^3.0.0",
-    "conf": "^10.2.0",
+    "conf": "^11.0.2",
     "gray-matter": "^4.0.2",
     "minimist": "^1.2.5",
     "update-notifier": "^6.0.2"
@@ -58,7 +58,7 @@
     "lint-staged": "^13.0.3",
     "semantic-release": "^21.1.1",
     "semantic-release-npm-github": "^5.0.0",
-    "xo": "^0.52.3"
+    "xo": "~0.55.1"
   },
   "engines": {
     "node": ">=14.0.0"
