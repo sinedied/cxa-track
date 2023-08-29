@@ -1,3 +1,18 @@
+# [3.0.0](https://github.com/sinedied/cxa-track/compare/2.2.0...3.0.0) (2023-08-29)
+
+
+### Bug Fixes
+
+* restrict azure.com domain to avoid issues with aad auth urls ([1ce9b01](https://github.com/sinedied/cxa-track/commit/1ce9b013f641d58359cd81e4756ce13be0d4b477))
+
+
+* chore!: update packages ([da86eeb](https://github.com/sinedied/cxa-track/commit/da86eeb7cbc47d4011f85cc55354605c8654dccc))
+
+
+### BREAKING CHANGES
+
+* requires Node.js >= 16.14
+
 # [2.2.0](https://github.com/sinedied/cxa-track/compare/2.1.0...2.2.0) (2022-10-03)
 
 
